@@ -394,17 +394,41 @@ body.gate-locked {
 }
 
 .gate-names {
-  font-size: 2.3rem;
-  color: #fff;
-  letter-spacing: 1px;
-  margin-bottom: 8px;
+  font-family: var(--font-serif);
+  font-size: clamp(1.25rem, 5vw, 2.25rem);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
   line-height: 1.25;
+  color: #fffdf5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  white-space: nowrap;
+  gap: 8px;
+}
+
+.gate-names .gate-name {
+  display: inline-block;
+  white-space: nowrap;
+  color: #fff6de;
+  background: linear-gradient(135deg, #ffffff 0%, #fff2d1 30%, #ffd482 65%, #ffffff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 10px rgba(250, 225, 166, 0.45));
 }
 
 .gate-names .ampersand {
   font-family: var(--font-script);
-  color: var(--gold-light);
-  font-size: 2.5rem;
+  color: #ffd885;
+  -webkit-text-fill-color: #ffd885;
+  font-size: 1.25em;
+  font-weight: 400;
+  line-height: 1;
+  margin: 0 2px;
+  filter: drop-shadow(0 2px 8px rgba(250, 225, 166, 0.5));
 }
 
 .gate-date {
@@ -743,29 +767,41 @@ body.gate-locked {
 }
 
 .hero-names {
-  font-size: 4rem;
-  font-weight: 500;
+  font-family: var(--font-serif);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 600;
   letter-spacing: 2px;
   margin-bottom: 16px;
-  line-height: 1.15;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+  color: #fffdf5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 12px;
 }
 
 .hero-names .name-bride,
 .hero-names .name-groom {
   display: inline-block;
-  background: linear-gradient(180deg, #ffffff 0%, #faecd0 100%);
+  white-space: nowrap;
+  color: #fff8e7;
+  background: linear-gradient(135deg, #ffffff 0%, #fff3d1 25%, #ffdf94 50%, #ffffff 80%, #fae1a6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 2px 14px rgba(250, 225, 166, 0.55)) drop-shadow(0 4px 22px rgba(0, 0, 0, 0.75));
 }
 
 .hero-names .ampersand {
   font-family: var(--font-script);
-  font-size: 3.5rem;
-  color: var(--gold-light);
-  -webkit-text-fill-color: var(--gold-light);
-  margin: 0 12px;
+  font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  color: #ffd885;
+  -webkit-text-fill-color: #ffd885;
+  margin: 0 4px;
   font-weight: 400;
+  line-height: 1;
+  filter: drop-shadow(0 2px 10px rgba(250, 225, 166, 0.65));
 }
 
 .hero-date-box {
@@ -2122,10 +2158,13 @@ textarea.form-control {
   }
 
   .hero-names {
-    font-size: 2.8rem;
+    font-size: clamp(1.8rem, 5vw, 2.7rem);
+    gap: 8px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
   }
   .hero-names .ampersand {
-    font-size: 2.4rem;
+    font-size: clamp(1.8rem, 4.5vw, 2.4rem);
   }
 
   .hero-actions {
@@ -2187,8 +2226,51 @@ textarea.form-control {
 }
 
 @media (max-width: 480px) {
+  /* Màn mở thiệp responsive trên điện thoại */
+  .invitation-gate {
+    padding: 14px;
+  }
+  .invitation-gate-card {
+    padding: 34px 16px;
+    border-radius: 16px;
+  }
+  .gate-names {
+    font-size: clamp(1.15rem, 5.2vw, 1.55rem);
+    gap: 6px;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+  }
+  .gate-badge {
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+  }
+  .gate-date {
+    font-size: 1rem;
+    letter-spacing: 1px;
+    margin-bottom: 12px;
+  }
+  .gate-quote {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 22px;
+  }
+  .gate-open-btn {
+    padding: 13px 26px;
+    font-size: 0.95rem;
+  }
+
+  /* Hero Section: Giữ tên 2 người ngang hàng, sáng rực rỡ và cân đối */
   .hero-names {
-    font-size: 2.15rem;
+    font-size: clamp(1.3rem, 5.8vw, 1.85rem);
+    gap: 6px;
+    letter-spacing: 0.5px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+  .hero-names .ampersand {
+    font-size: clamp(1.4rem, 5.5vw, 1.85rem);
+    margin: 0 2px;
   }
   .hero-tagline {
     font-size: 2.2rem;
@@ -2212,5 +2294,22 @@ textarea.form-control {
   }
   .location-map-wrap {
     height: 320px;
+  }
+}
+
+@media (max-width: 360px) {
+  .invitation-gate {
+    padding: 10px;
+  }
+  .invitation-gate-card {
+    padding: 28px 10px;
+  }
+  .gate-names {
+    font-size: 1.05rem;
+    gap: 4px;
+  }
+  .hero-names {
+    font-size: 1.18rem;
+    gap: 4px;
   }
 }
