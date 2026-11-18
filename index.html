@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Trung Hiếu & Hoài Thương | Lễ Vu Quy & Tiệc Cưới - 28.11.2026</title>
+  <meta name="description" content="Trân trọng kính mời tới dự bữa cơm thân mật và chung vui cùng gia đình chúng tôi trong Lễ Thành Hôn & Vu Quy của Trung Hiếu & Hoài Thương.">
+  <meta name="keywords" content="đám cưới, Trung Hiếu, Hoài Thương, thiệp cưới, lễ vu quy, Đông Anh Hà Nội">
+
+  <!-- Open Graph / Facebook / Zalo Share Cards -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Trung Hiếu & Hoài Thương - Lễ Vu Quy & Tiệc Cưới">
+  <meta property="og:description" content="Trân trọng kính mời Quý vị tới dự bữa cơm thân mật chung vui cùng gia đình chúng tôi vào ngày 28 & 29.11.2026.">
+  <meta property="og:image" content="images/wedding-card.jpg">
+
+  <!-- Google Fonts: Serif hoàng gia & Thư pháp nghệ thuật -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ===== MÀN CHÀO MỞ THIỆP CƯỚI & TỰ ĐỘNG PHÁT NHẠC (WELCOME GATEWAY) ===== -->
+  <div class="invitation-gate" id="invitationGate">
+    <div class="invitation-gate-card">
+      <div class="gate-monogram">
+        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2" />
+          <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="1" />
+          <text x="35" y="60" font-family="'Playfair Display', serif" font-size="34" font-weight="bold" fill="currentColor">T</text>
+          <text x="48" y="66" font-family="'Playfair Display', serif" font-size="34" font-weight="bold" fill="currentColor">H</text>
+        </svg>
+      </div>
+
+      <span class="gate-badge">Thiệp Mời Hôn Lễ Hoàng Gia</span>
+      <h2 class="gate-names">Trung Hiếu <span class="ampersand">&amp;</span> Hoài Thương</h2>
+      <p class="gate-date">28 · 29 Tháng 11 Năm 2026</p>
+      
+      <div class="gate-divider">❖ ❖ ❖</div>
+      
+      <p class="gate-quote">“Ngày đầu tiên cùng nhau sống trọn một đời... Trân trọng kính mời Quý vị chung vui cùng gia đình chúng tôi!”</p>
+      
+      <button class="gate-open-btn" id="openInvitationBtn">
+        <span class="btn-music-icon">💌</span> Mở Thiệp
+      </button>
+
+      <p class="gate-hint">✦ Chạm vào màn hình để mở thiệp ✦</p>
+    </div>
+  </div>
+
+  <!-- ===== THANH ĐIỀU HƯỚNG (NAVBAR) ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#hero" class="nav-brand">
+        <div class="nav-monogram">TH</div>
+        <div class="nav-names">Hiếu <span>&</span> Thương</div>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#invitation">Thiệp Mời</a></li>
+        <li><a href="#events">Sự Kiện</a></li>
+        <li><a href="#love-story">Chuyện Tình</a></li>
+        <li><a href="#gallery">Album Ảnh</a></li>
+        <li><a href="#guestbook">Sổ Lưu Bút</a></li>
+        <li><a href="#rsvp">Xác Nhận (RSVP)</a></li>
+        <li><a href="#location">Địa Điểm</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Mở menu điều hướng">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Lớp phủ menu trên di động -->
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- ===== MÀN HÌNH CHÍNH (HERO SECTION) ===== -->
+  <section id="hero">
+    <!-- Khung hoa văn viền Hero hoàng gia -->
+    <div class="hero-frame-border"></div>
+
+    <!-- Canvas hiệu ứng hạt vàng kim & cánh hoa sen lấp lánh -->
+    <canvas class="hero-canvas" id="goldCanvas"></canvas>
+
+    <div class="hero-content reveal">
+      <div class="hero-monogram-container">
+        <div class="hero-monogram">
+          <!-- Monogram TH Vector dát vàng lồng hoa văn -->
+          <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="50" cy="50" r="46" fill="none" stroke="currentColor" stroke-width="1.5" stroke-dasharray="3 2" />
+            <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" stroke-width="1" />
+            <text x="35" y="60" font-family="'Playfair Display', serif" font-size="34" font-weight="bold" fill="currentColor">T</text>
+            <text x="48" y="66" font-family="'Playfair Display', serif" font-size="34" font-weight="bold" fill="currentColor">H</text>
+            <path d="M50 14 C46 22 54 22 50 14 Z M50 86 C46 78 54 78 50 86 Z" fill="currentColor" />
+          </svg>
+        </div>
+      </div>
+
+      <p class="hero-tagline">Save Our Date</p>
+      <div class="hero-invitation-badge">LỄ VU QUY & TIỆC CƯỚI</div>
+
+      <h1 class="hero-names">
+        <span class="name-groom">Trung Hiếu</span>
+        <span class="ampersand">&amp;</span>
+        <span class="name-bride">Hoài Thương</span>
+      </h1>
+
+      <div class="hero-date-box">
+        <div class="line"></div>
+        <div class="date-text">28 · 29 THÁNG 11 NĂM 2026</div>
+        <div class="line"></div>
+      </div>
+      <p class="hero-lunar-date">(Tức ngày 20 & 21 tháng 10 năm Bính Ngọ)</p>
+
+      <!-- Đồng hồ đếm ngược đến ngày cưới chính thức (16:00 ngày 28.11.2026) -->
+      <div class="countdown" id="countdown">
+        <div class="countdown-item">
+          <div class="countdown-value" id="countdown-days">00</div>
+          <div class="countdown-label">Ngày</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-value" id="countdown-hours">00</div>
+          <div class="countdown-label">Giờ</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-value" id="countdown-minutes">00</div>
+          <div class="countdown-label">Phút</div>
+        </div>
+        <div class="countdown-item">
+          <div class="countdown-value" id="countdown-seconds">00</div>
+          <div class="countdown-label">Giây</div>
+        </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#events" class="btn-gold">Xem Lịch Trình Tiệc Cưới</a>
+        <a href="#rsvp" class="btn-outline-gold">Xác Nhận Tham Dự</a>
+      </div>
+    </div>
+
+    <a href="#invitation" class="hero-scroll" aria-label="Cuộn xuống để xem thiệp mời">
+      <span>Cuộn Xuống</span>
+      <svg viewBox="0 0 24 24">
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+    </a>
+  </section>
+
+  <!-- ===== LỜI MỞ ĐẦU & GIỚI THIỆU HAI HỌ (WELCOME & FAMILIES) ===== -->
+  <section id="invitation" class="section">
+    <div class="container">
+      <div class="invitation-card traditional-frame reveal">
+        <div class="invitation-ornament-top">✤ ❖ ✤</div>
+        <span class="section-subtitle">Trân Trọng Kính Mời</span>
+        <h2 class="section-title">Chung Vui Cùng Gia Đình</h2>
+        
+        <p class="invitation-quote">
+          “Tình yêu không chỉ là nhìn về một hướng, mà là cùng nhau bước chung trên một con đường.
+          Sự hiện diện của Quý vị là niềm vinh hạnh và lời chúc phúc thiêng liêng nhất cho gia đình chúng tôi!”
+        </p>
+
+        <!-- Khung giới thiệu Cô Dâu - Chú Rể & Đại Diện Hai Họ -->
+        <div class="family-grid">
+          <!-- Chú Rể & Nhà Trai -->
+          <div class="family-box">
+            <span class="family-role">Chú Rể</span>
+            <div class="couple-avatar-wrap">
+              <img src="images/gallery-1.png" alt="Chú rể Trung Hiếu" class="couple-avatar">
+            </div>
+            <h3 class="couple-person-name">Trung Hiếu</h3>
+            <p class="couple-person-desc">Chàng trai ấm áp, chu đáo, luôn là chỗ dựa vững chãi và đem lại nụ cười rạng rỡ cho người mình thương.</p>
+            
+            <div class="parent-info">
+              <p class="parent-title">Đại Diện Nhà Trai</p>
+              <p class="parent-name">Bà NGUYỄN THỊ CÚC</p>
+            </div>
+          </div>
+
+          <!-- Trái tim liên kết trung tâm -->
+          <div class="family-heart-center">
+            <div class="family-heart-icon">♥</div>
+            <span class="script-font" style="font-size: 1.8rem; color: var(--gold-dark);">Trăm Năm Tình Viên Mãn</span>
+          </div>
+
+          <!-- Cô Dâu & Nhà Gái -->
+          <div class="family-box">
+            <span class="family-role">Cô Dâu</span>
+            <div class="couple-avatar-wrap">
+              <img src="images/gallery-2.png" alt="Cô dâu Hoài Thương" class="couple-avatar">
+            </div>
+            <h3 class="couple-person-name">Hoài Thương</h3>
+            <p class="couple-person-desc">Cô gái dịu dàng, thông minh và tràn đầy năng lượng tích cực, người thắp sáng mọi khoảnh khắc bình yên.</p>
+
+            <div class="parent-info">
+              <p class="parent-title">Đại Diện Nhà Gái</p>
+              <p class="parent-name">Ông TRẦN NGỌC THUYẾT</p>
+              <p class="parent-name">Bà ĐÀO THỊ TÁM</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nút bấm xem ảnh thiệp cưới gốc -->
+        <div style="margin-top: 25px;">
+          <button class="btn-outline-gold" id="btnViewCard" style="font-size: 0.95rem;">
+            💌 Xem Tấm Thiệp Cưới Thực Tế
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">✿</div>
+
+  <!-- ===== LỊCH TRÌNH SỰ KIỆN CHI TIẾT (EVENTS) ===== -->
+  <section id="events" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Save The Date</span>
+        <h2 class="section-title">Lịch Trình Tiệc Cưới</h2>
+        <p class="section-desc">Kính mời Quý khách sắp xếp thời gian tới chung vui và nâng ly chúc phúc cùng đôi bạn trẻ.</p>
+      </div>
+
+      <div class="events-wrapper">
+        <!-- Sự kiện 1: Bữa cơm thân mật (Tiệc mừng) -->
+        <div class="event-luxury-card reveal stagger-1">
+          <div>
+            <span class="event-badge">Tiệc Mừng Thân Mật</span>
+            <h3 class="event-title">Bữa Cơm Chung Vui</h3>
+            
+            <div class="event-datetime-group">
+              <div class="event-time-highlight">
+                <span>⏰ 16:00</span>
+                <span>•</span>
+                <span>Thứ Bảy</span>
+              </div>
+              <p class="event-date-text">Ngày 28 Tháng 11 Năm 2026</p>
+              <p class="event-lunar-text">(Tức ngày 20 tháng 10 năm Bính Ngọ)</p>
+            </div>
+
+            <div class="event-venue-group">
+              <p class="event-venue-name">🏡 TẠI: GIA ĐÌNH NHÀ GÁI</p>
+              <p class="event-venue-address">Thôn Lý Nhân, Xã Dục Tú, Huyện Đông Anh, Thành phố Hà Nội</p>
+            </div>
+          </div>
+
+          <div class="event-actions">
+            <!-- Nút thêm vào Google Calendar -->
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Ti%E1%BB%87c+C%C6%B0%E1%BB%9Bi+Trung+Hi%E1%BA%BFu+%26+Ho%C3%A0i+Th%C6%B0%C6%A1ng&dates=20261128T090000Z/20261128T130000Z&details=B%E1%BB%AFa+c%C6%A1m+th%C3%A2n+m%E1%BA%ADt+chung+vui+c%C3%B9ng+gia+%C4%91%C3%ACnh+Trung+Hi%E1%BA%BFu+%26+Ho%C3%A0i+Th%C6%B0%C6%A1ng&location=L%C3%BD+Nh%C3%A2n,+%C4%90%C3%B4ng+Anh,+H%C3%A0+N%E1%BB%99i" target="_blank" rel="noopener noreferrer" class="btn-gold" style="padding: 10px 20px; font-size: 0.85rem;">
+              📅 Thêm Vào Lịch
+            </a>
+            <a href="https://maps.google.com/?q=L%C3%BD+Nh%C3%A2n,+%C4%90%C3%B4ng+Anh,+H%C3%A0+N%E1%BB%99i" target="_blank" rel="noopener noreferrer" class="btn-outline-gold" style="padding: 10px 20px; font-size: 0.85rem;">
+              📍 Chỉ Đường
+            </a>
+          </div>
+        </div>
+
+        <!-- Sự kiện 2: Lễ Vu Quy -->
+        <div class="event-luxury-card reveal stagger-2">
+          <div>
+            <span class="event-badge">Nghi Lễ Chính Thức</span>
+            <h3 class="event-title">Lễ Vu Quy</h3>
+            
+            <div class="event-datetime-group">
+              <div class="event-time-highlight">
+                <span>⏰ 08:30</span>
+                <span>•</span>
+                <span>Chủ Nhật</span>
+              </div>
+              <p class="event-date-text">Ngày 29 Tháng 11 Năm 2026</p>
+              <p class="event-lunar-text">(Tức ngày 21 tháng 10 năm Bính Ngọ)</p>
+            </div>
+
+            <div class="event-venue-group">
+              <p class="event-venue-name">💒 TẠI: GIA ĐÌNH NHÀ GÁI</p>
+              <p class="event-venue-address">Thôn Lý Nhân, Xã Dục Tú, Huyện Đông Anh, Thành phố Hà Nội</p>
+            </div>
+          </div>
+
+          <div class="event-actions">
+            <!-- Nút thêm vào Google Calendar -->
+            <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=L%E1%BB%85+Vu+Quy+Trung+Hi%E1%BA%BFu+%26+Ho%C3%A0i+Th%C6%B0%C6%A1ng&dates=20261129T013000Z/20261129T043000Z&details=L%E1%BB%85+Vu+Quy+%C4%91%C3%B3n+d%C3%A2u+Ho%C3%A0i+Th%C6%B0%C6%A1ng+%26+Trung+Hi%E1%BA%BFu&location=L%C3%BD+Nh%C3%A2n,+%C4%90%C3%B4ng+Anh,+H%C3%A0+N%E1%BB%99i" target="_blank" rel="noopener noreferrer" class="btn-gold" style="padding: 10px 20px; font-size: 0.85rem;">
+              📅 Thêm Vào Lịch
+            </a>
+            <a href="https://maps.google.com/?q=L%C3%BD+Nh%C3%A2n,+%C4%90%C3%B4ng+Anh,+H%C3%A0+N%E1%BB%99i" target="_blank" rel="noopener noreferrer" class="btn-outline-gold" style="padding: 10px 20px; font-size: 0.85rem;">
+              📍 Chỉ Đường
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">✿</div>
+
+  <!-- ===== CHUYỆN TÌNH YÊU (LOVE STORY TIMELINE) ===== -->
+  <section id="love-story" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Chuyện Chúng Mình</span>
+        <h2 class="section-title">Hành Trình Tình Yêu</h2>
+        <p class="section-desc">Mọi câu chuyện tình yêu đều kỳ diệu, nhưng câu chuyện của chúng mình là điều tuyệt vời nhất.</p>
+      </div>
+
+      <div class="story-timeline">
+        <!-- Mốc 1 -->
+        <div class="story-item reveal">
+          <div class="story-dot">☕</div>
+          <div class="story-content">
+            <p class="story-date">Tháng 10 / 2021</p>
+            <h3 class="story-title">Lần Đầu Gặp Gỡ</h3>
+            <p class="story-text">Một buổi chiều thu Hà Nội se lạnh, ánh mắt chạm nhau giữa quán cà phê quen. Một cuộc trò chuyện tưởng chừng ngẫu nhiên đã hóa thành duyên nợ cả đời.</p>
+          </div>
+        </div>
+
+        <!-- Mốc 2 -->
+        <div class="story-item reveal">
+          <div class="story-dot">🌿</div>
+          <div class="story-content">
+            <p class="story-date">Tháng 03 / 2022</p>
+            <h3 class="story-title">Buổi Hẹn Hò Đầu Tiên</h3>
+            <p class="story-text">Cùng nhau dạo bước quanh Hồ Tây lộng gió, sẻ chia về những ước mơ, hoài bão tuổi trẻ. Kể từ ngày ấy, chúng mình biết rằng trái tim đã tìm thấy nơi dừng chân.</p>
+          </div>
+        </div>
+
+        <!-- Mốc 3 -->
+        <div class="story-item reveal">
+          <div class="story-dot">✈️</div>
+          <div class="story-content">
+            <p class="story-date">Tháng 11 / 2024</p>
+            <h3 class="story-title">Những Chuyến Đi Cùng Nhau</h3>
+            <p class="story-text">Từ những con đường sương mù Sa Pa đến biển xanh cát trắng miền Trung, mỗi bước chân in dấu kỷ niệm đều làm tình yêu thêm thấu hiểu và sâu sắc.</p>
+          </div>
+        </div>
+
+        <!-- Mốc 4 -->
+        <div class="story-item reveal">
+          <div class="story-dot">💍</div>
+          <div class="story-content">
+            <p class="story-date">Tháng 06 / 2026</p>
+            <h3 class="story-title">Khoảnh Khắc Cầu Hôn</h3>
+            <p class="story-text">Dưới hoàng hôn rực rỡ, Hiếu đã trao chiếc nhẫn ước hẹn và nhận được lời đồng ý nghẹn ngào trong hạnh phúc của Thương: "Em đồng ý đi cùng anh suốt cuộc đời!"</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">✿</div>
+
+  <!-- ===== ALBUM ẢNH CƯỚI MẪU (GALLERY & LIGHTBOX) ===== -->
+  <section id="gallery" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Khoảnh Khắc Ngọt Ngào</span>
+        <h2 class="section-title">Album Ảnh Cưới</h2>
+        <p class="section-desc">Ghi lại những khoảnh khắc rạng rỡ và thiêng liêng nhất trong ngày tình yêu đơm hoa kết trái.</p>
+      </div>
+
+      <!-- Lưới ảnh cưới mẫu (Bạn có thể thay thế bằng ảnh cưới thực tế vào thư mục images/) -->
+      <div class="gallery-grid">
+        <!-- Ảnh 1: Thiệp cưới chính thức -->
+        <div class="gallery-item reveal stagger-1" data-index="0" data-caption="Thiệp cưới Hoàng Gia - Trung Hiếu & Hoài Thương">
+          <img src="images/wedding-card.jpg" alt="Thiệp cưới Trung Hiếu và Hoài Thương" loading="lazy">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-icon">🔍</div>
+            <p class="gallery-overlay-caption">Thiệp Cưới Chính Thức</p>
+          </div>
+        </div>
+
+        <!-- Ảnh 2 -->
+        <div class="gallery-item reveal stagger-2" data-index="1" data-caption="Khoảnh khắc hạnh phúc ngập tràn">
+          <img src="images/gallery-1.png" alt="Ảnh cưới lãng mạn 1" loading="lazy">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-icon">🔍</div>
+            <p class="gallery-overlay-caption">Bên Nhau Trọn Đời</p>
+          </div>
+        </div>
+
+        <!-- Ảnh 3 -->
+        <div class="gallery-item reveal stagger-3" data-index="2" data-caption="Hoa cưới rực rỡ tình yêu">
+          <img src="images/gallery-2.png" alt="Ảnh cưới lãng mạn 2" loading="lazy">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-icon">🔍</div>
+            <p class="gallery-overlay-caption">Bó Hoa Hạnh Phúc</p>
+          </div>
+        </div>
+
+        <!-- Ảnh 4 -->
+        <div class="gallery-item reveal stagger-1" data-index="3" data-caption="Nhẫn cưới kết duyên trăm năm">
+          <img src="images/gallery-3.png" alt="Ảnh cưới lãng mạn 3" loading="lazy">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-icon">🔍</div>
+            <p class="gallery-overlay-caption">Nhẫn Cưới Ước Hẹn</p>
+          </div>
+        </div>
+
+        <!-- Ảnh 5 -->
+        <div class="gallery-item reveal stagger-2" data-index="4" data-caption="Không gian hôn lễ trang trọng">
+          <img src="images/gallery-4.png" alt="Ảnh cưới lãng mạn 4" loading="lazy">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-icon">🔍</div>
+            <p class="gallery-overlay-caption">Lễ Đường Tình Yêu</p>
+          </div>
+        </div>
+
+        <!-- Ảnh 6 -->
+        <div class="gallery-item reveal stagger-3" data-index="5" data-caption="Bàn tiệc đầm ấm cùng gia đình">
+          <img src="images/gallery-6.png" alt="Ảnh cưới lãng mạn 5" loading="lazy">
+          <div class="gallery-overlay">
+            <div class="gallery-overlay-icon">🔍</div>
+            <p class="gallery-overlay-caption">Bữa Cơm Thân Mật</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox Modal -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lightboxClose" aria-label="Đóng ảnh phóng to">✕</button>
+    <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Ảnh trước">‹</button>
+    <div class="lightbox-content">
+      <img class="lightbox-img" id="lightboxImg" src="" alt="Ảnh cưới phóng to">
+      <p class="lightbox-caption" id="lightboxCaption"></p>
+    </div>
+    <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Ảnh tiếp theo">›</button>
+  </div>
+
+  <div class="section-divider">✿</div>
+
+  <!-- ===== SỔ LƯU BÚT ONLINE (GUESTBOOK) ===== -->
+  <section id="guestbook" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Gửi Lời Chúc Phúc</span>
+        <h2 class="section-title">Sổ Lưu Bút Online</h2>
+        <p class="section-desc">Những lời chúc tốt đẹp của Quý vị là món quà vô giá đồng hành cùng đôi bạn trẻ trên chặng đường mới.</p>
+      </div>
+
+      <div class="guestbook-wrapper">
+        <!-- Form gửi lời chúc -->
+        <div class="guestbook-card reveal">
+          <form id="guestbookForm">
+            <div class="form-group">
+              <label for="gbName">Họ và Tên của bạn</label>
+              <input type="text" id="gbName" class="form-control" placeholder="Ví dụ: Anh Tuấn, Cô Lan..." required>
+            </div>
+            <div class="form-group">
+              <label for="gbMessage">Lời chúc phúc gửi tới Trung Hiếu & Hoài Thương</label>
+              <textarea id="gbMessage" class="form-control" placeholder="Chúc hai bạn trăm năm hạnh phúc, răng long đầu bạc..." required></textarea>
+            </div>
+            <button type="submit" class="btn-gold" style="width: 100%;">
+              💌 Gửi Lời Chúc Mừng
+            </button>
+          </form>
+        </div>
+
+        <!-- Danh sách lời chúc hiển thị dạng Carousel 6 cái mỗi trang, lướt mượt mà -->
+        <div class="guestbook-carousel-container reveal">
+          <div class="guestbook-meta-bar">
+            <span class="guestbook-count-badge" id="guestbookCountBadge">12 Lời chúc phúc</span>
+            <div class="guestbook-page-indicator">
+              <span id="guestbookCurrentPage">Trang 1</span> / <span id="guestbookTotalPages">2</span>
+            </div>
+          </div>
+
+          <div class="guestbook-slider-wrapper">
+            <button class="guestbook-arrow prev" id="gbPrevBtn" aria-label="Xem lời chúc trang trước">‹</button>
+            <div class="guestbook-slider-track" id="guestbookSliderTrack">
+              <!-- Sẽ được render động qua JavaScript: 6 lời chúc trên mỗi trang/slide -->
+            </div>
+            <button class="guestbook-arrow next" id="gbNextBtn" aria-label="Xem lời chúc trang tiếp theo">›</button>
+          </div>
+
+          <!-- Các chấm tròn phân trang (Pagination Dots) -->
+          <div class="guestbook-dots" id="guestbookDots"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">✿</div>
+
+  <!-- ===== FORM XÁC NHẬN THAM DỰ (RSVP) ===== -->
+  <section id="rsvp" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Xác Nhận Tham Dự</span>
+        <h2 class="section-title">Be Our Guest</h2>
+        <p class="section-desc">Để gia đình chuẩn bị chu đáo nhất, xin Quý khách vui lòng xác nhận sự hiện diện trước ngày 25/11/2026.</p>
+      </div>
+
+      <div class="rsvp-box reveal">
+        <form id="rsvpForm">
+          <div class="form-group">
+            <label for="rsvpName">Họ và Tên của Quý khách</label>
+            <input type="text" id="rsvpName" class="form-control" placeholder="Nhập họ và tên..." required>
+          </div>
+
+          <div class="form-group">
+            <label for="rsvpPhone">Số Điện Thoại / Zalo</label>
+            <input type="tel" id="rsvpPhone" class="form-control" placeholder="Ví dụ: 0987xxxxxx" required>
+          </div>
+
+          <div class="form-group">
+            <label>Quý khách sẽ tham dự sự kiện nào?</label>
+            <div class="rsvp-options-grid">
+              <label class="rsvp-radio-label">
+                <input type="radio" name="rsvpEvent" value="ca-hai" checked>
+                <span>Cả Hai Buổi Tiệc (28 & 29/11)</span>
+              </label>
+              <label class="rsvp-radio-label">
+                <input type="radio" name="rsvpEvent" value="bua-com">
+                <span>Tiệc Cơm (16:00 - 28/11)</span>
+              </label>
+              <label class="rsvp-radio-label">
+                <input type="radio" name="rsvpEvent" value="vu-quy">
+                <span>Lễ Vu Quy (08:30 - 29/11)</span>
+              </label>
+              <label class="rsvp-radio-label">
+                <input type="radio" name="rsvpEvent" value="khong-the">
+                <span>Rất Tiếc Không Thể Tham Dự</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="rsvpGuests">Số Lượng Người Tham Dự</label>
+            <select id="rsvpGuests" class="form-control">
+              <option value="1">Đi 1 mình (1 người)</option>
+              <option value="2" selected>Đi cùng người thương / bạn bè (2 người)</option>
+              <option value="3">Đi cùng gia đình (3 người)</option>
+              <option value="4">Đi cùng gia đình (4 người trở lên)</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="rsvpNote">Lời Nhắn Gửi Tới Cô Dâu & Chú Rể (Tùy chọn)</label>
+            <textarea id="rsvpNote" class="form-control" style="min-height: 80px;" placeholder="Ghi chú thêm (nếu có)..."></textarea>
+          </div>
+
+          <button type="submit" class="btn-gold" style="width: 100%; font-size: 1.05rem; padding: 16px;">
+            🎉 Xác Nhận Tham Dự Ngay
+          </button>
+        </form>
+
+        <!-- Thông báo thành công sau khi gửi -->
+        <div class="rsvp-success-msg" id="rsvpSuccess">
+          <div class="success-icon">💐</div>
+          <h3>Cảm Ơn Quý Khách Rất Nhiều!</h3>
+          <p id="rsvpSuccessText">Gia đình đã nhận được thông tin xác nhận của bạn. Rất hân hạnh được đón tiếp bạn trong ngày vui của Trung Hiếu & Hoài Thương!</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider">✿</div>
+
+  <!-- ===== BẢN ĐỒ & ĐỊA ĐIỂM (LOCATION & MAP) ===== -->
+  <section id="location" class="section">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-subtitle">Chỉ Đường & Vị Trí</span>
+        <h2 class="section-title">Địa Điểm Tổ Chức</h2>
+        <p class="section-desc">Nơi lưu giữ trọn vẹn những phút giây hạnh phúc và tiếng cười sum vầy của hai gia đình.</p>
+      </div>
+
+      <div class="location-grid">
+        <div class="location-info-card traditional-frame reveal-left">
+          <h3 class="location-title">Gia Đình Nhà Gái</h3>
+          <p class="location-desc-text">Thôn Lý Nhân, Xã Dục Tú, Huyện Đông Anh, Thành phố Hà Nội</p>
+
+          <ul class="location-meta-list">
+            <li class="location-meta-item">
+              <div class="location-meta-icon">📅</div>
+              <div>
+                <strong>Thời gian tổ chức:</strong>
+                <p>16:00 ngày 28/11/2026 & 08:30 ngày 29/11/2026</p>
+              </div>
+            </li>
+            <li class="location-meta-item">
+              <div class="location-meta-icon">👔</div>
+              <div>
+                <strong>Gợi ý trang phục (Dress code):</strong>
+                <p>Màu Xanh lục bảo, Vàng kim hoàng gia, Be/Trắng kem thanh lịch.</p>
+              </div>
+            </li>
+            <li class="location-meta-item">
+              <div class="location-meta-icon">🅿️</div>
+              <div>
+                <strong>Khu vực đỗ xe:</strong>
+                <p>Có chỗ đỗ xe ô tô và xe máy rộng rãi, bảo vệ hướng dẫn nhiệt tình.</p>
+              </div>
+            </li>
+          </ul>
+
+          <a href="https://maps.google.com/?q=L%C3%BD+Nh%C3%A2n,+%C4%90%C3%B4ng+Anh,+H%C3%A0+N%E1%BB%99i" target="_blank" rel="noopener noreferrer" class="btn-gold" style="width: 100%;">
+            📍 Mở Ứng Dụng Google Maps Chỉ Đường
+          </a>
+        </div>
+
+        <div class="location-map-wrap reveal-right">
+          <!-- Google Maps Iframe cho địa điểm Lý Nhân, Đông Anh, Hà Nội -->
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14890.354673663674!2d105.8924195!3d21.0890695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135a96ceb05d15f%3A0x6bce9d7bfa5113bb!2zTMO9IE5ow6JuLCBE4bulYyBUw7osIMSQw7RuZyBBbmgsIEjDoCBO4buZaSwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2svn!4v1700000000000!5m2!1svi!2svn" 
+            width="100%" 
+            height="100%" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Bản đồ chỉ đường Lý Nhân, Đông Anh, Hà Nội">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CHÂN TRANG (FOOTER) ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-monogram">TH</div>
+      <h2 class="footer-names">Trung Hiếu &amp; Hoài Thương</h2>
+      <p class="footer-quote">"Trân trọng từng khoảnh khắc được cùng nhau bước tới tương lai"</p>
+      <p class="footer-date-tag">28 · 29 Tháng 11 Năm 2026 — Lý Nhân, Đông Anh, Hà Nội</p>
+      <div class="footer-copyright">
+        <p>Gia đình Trung Hiếu & Hoài Thương trân trọng cảm ơn tình cảm của Quý vị!</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== TRÌNH PHÁT NHẠC NỀN CỐ ĐỊNH (MUSIC PLAYER) ===== -->
+  <div class="music-player-fixed">
+    <span class="music-label-tooltip" id="musicStatusText">Bật nhạc nền đám cưới</span>
+    <button class="music-toggle-btn" id="musicToggleBtn" aria-label="Bật/Tắt nhạc nền">
+      🎵
+    </button>
+    <audio id="weddingAudio" loop preload="auto">
+      <source src="music/wedding-song.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <!-- ===== THANH ĐIỀU HƯỚNG NHANH CỐ ĐỊNH ĐÁY MÀN HÌNH CHO MOBILE ===== -->
+  <nav class="mobile-bottom-bar" id="mobileBottomBar" aria-label="Thanh thao tác nhanh di động">
+    <a href="#events" class="mobile-bottom-item">
+      <span class="icon">📅</span>
+      <span>Lịch Tiệc</span>
+    </a>
+    <a href="#gallery" class="mobile-bottom-item">
+      <span class="icon">📸</span>
+      <span>Album</span>
+    </a>
+    <a href="#rsvp" class="mobile-bottom-item highlight-rsvp">
+      <span class="icon">✍️</span>
+      <span>RSVP</span>
+    </a>
+    <a href="#guestbook" class="mobile-bottom-item">
+      <span class="icon">💌</span>
+      <span>Lời Chúc</span>
+    </a>
+    <a href="https://maps.google.com/?q=L%C3%BD+Nh%C3%A2n,+%C4%90%C3%B4ng+Anh,+H%C3%A0+N%E1%BB%99i" target="_blank" rel="noopener noreferrer" class="mobile-bottom-item">
+      <span class="icon">📍</span>
+      <span>Chỉ Đường</span>
+    </a>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>
