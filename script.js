@@ -318,8 +318,11 @@ document.addEventListener('DOMContentLoaded', () => {
   // Hỗ trợ nút xem thiệp cưới thực tế
   if (btnViewCard) {
     btnViewCard.addEventListener('click', () => {
-      // Mở ảnh thiệp cưới gốc (vị trí 0 trong gallery)
-      openLightbox(0);
+      // Mở ảnh thiệp cưới gốc riêng biệt trong Lightbox
+      lightboxImg.src = 'images/wedding-card.jpg';
+      lightboxCaption.textContent = 'Thiệp cưới Hoàng Gia - Trung Hiếu & Hoài Thương';
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
     });
   }
 
