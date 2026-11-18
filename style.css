@@ -1217,6 +1217,8 @@ body.gate-locked {
   background: var(--bg-card-warm);
   border: 1px solid rgba(197, 160, 89, 0.25);
   transition: var(--transition-smooth);
+  content-visibility: auto;
+  contain-intrinsic-size: 320px 400px;
 }
 
 .gallery-item img {
