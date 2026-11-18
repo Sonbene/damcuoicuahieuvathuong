@@ -276,7 +276,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!data) return;
 
     lightboxImg.src = data.src;
-    lightboxCaption.textContent = data.caption;
+    lightboxCaption.textContent = `${data.caption} (${currentGalleryIndex + 1}/${galleryData.length})`;
     lightbox.classList.add('active');
     document.body.style.overflow = 'hidden';
   }
@@ -337,6 +337,94 @@ document.addEventListener('DOMContentLoaded', () => {
       if (touchEndX > touchStartX + 50) showPrevImage();
     }, { passive: true });
   }
+
+  // --- Phân trang Album Cưới (Multi-page Album Pagination) ---
+  const albumPrevBtn = document.getElementById('albumPrevBtn');
+  const albumNextBtn = document.getElementById('albumNextBtn');
+  const albumNumBtns = document.querySelectorAll('.album-num-btn');
+  const albumPageIndicator = document.getElementById('albumPageIndicator');
+  const totalAlbumPages = 4;
+  let currentAlbumPage = 1;
+
+  function switchAlbumPage(targetPage, shouldScroll = false) {
+    if (targetPage < 1) targetPage = 1;
+    if (targetPage > totalAlbumPages) targetPage = totalAlbumPages;
+    currentAlbumPage = targetPage;
+
+    // Hiển thị các ảnh thuộc trang hiện tại, ẩn các ảnh trang khác
+    galleryItems.forEach(item => {
+      const page = item.getAttribute('data-page');
+      if (page === String(currentAlbumPage)) {
+        item.classList.remove('page-hidden');
+        item.classList.add('page-active');
+      } else {
+        item.classList.add('page-hidden');
+        item.classList.remove('page-active');
+      }
+    });
+
+    // Cập nhật text số trang
+    if (albumPageIndicator) {
+      albumPageIndicator.textContent = `Trang ${currentAlbumPage} / ${totalAlbumPages}`;
+    }
+
+    // Cập nhật trạng thái active cho nút số trang
+    albumNumBtns.forEach(btn => {
+      const pageVal = parseInt(btn.getAttribute('data-page'), 10);
+      if (pageVal === currentAlbumPage) {
+        btn.classList.add('active');
+        btn.setAttribute('aria-current', 'page');
+      } else {
+        btn.classList.remove('active');
+        btn.removeAttribute('aria-current');
+      }
+    });
+
+    // Cập nhật disabled cho nút Trước / Sau
+    if (albumPrevBtn) albumPrevBtn.disabled = (currentAlbumPage <= 1);
+    if (albumNextBtn) albumNextBtn.disabled = (currentAlbumPage >= totalAlbumPages);
+
+    // Cuộn mượt đến đầu album nếu người dùng chủ động chuyển trang
+    if (shouldScroll) {
+      const gallerySection = document.getElementById('gallery');
+      if (gallerySection) {
+        const headerOffset = 90;
+        const rectTop = gallerySection.getBoundingClientRect().top;
+        const targetScrollTop = rectTop + window.pageYOffset - headerOffset;
+        if (window.pageYOffset > targetScrollTop + 100) {
+          window.scrollTo({ top: targetScrollTop, behavior: 'smooth' });
+        }
+      }
+    }
+  }
+
+  // Khởi tạo hiển thị trang 1 ban đầu
+  switchAlbumPage(1, false);
+
+  if (albumPrevBtn) {
+    albumPrevBtn.addEventListener('click', () => {
+      if (currentAlbumPage > 1) {
+        switchAlbumPage(currentAlbumPage - 1, true);
+      }
+    });
+  }
+
+  if (albumNextBtn) {
+    albumNextBtn.addEventListener('click', () => {
+      if (currentAlbumPage < totalAlbumPages) {
+        switchAlbumPage(currentAlbumPage + 1, true);
+      }
+    });
+  }
+
+  albumNumBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const pageVal = parseInt(btn.getAttribute('data-page'), 10);
+      if (pageVal && pageVal !== currentAlbumPage) {
+        switchAlbumPage(pageVal, true);
+      }
+    });
+  });
 
   // ========================================================================
   // 6. SỔ LƯU BÚT ONLINE - CAROUSEL 6 LỜI CHÚC MỖI TRANG (GUESTBOOK)
