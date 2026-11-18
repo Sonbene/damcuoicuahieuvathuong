@@ -1890,15 +1890,17 @@ textarea.form-control {
 }
 
 .gift-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 32px;
-  max-width: 900px;
+  display: flex;
+  justify-content: center;
+  max-width: 480px;
   margin: 40px auto 30px;
+  width: 100%;
 }
 
 .gift-card {
-  padding: 34px 26px;
+  width: 100%;
+  max-width: 460px;
+  padding: 36px 28px;
   background: var(--bg-card);
   border-radius: var(--radius-lg);
   box-shadow: var(--shadow-md);
