@@ -951,7 +951,7 @@ body.gate-locked {
 .family-grid {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  align-items: center;
+  align-items: stretch; /* Đảm bảo 2 khung luôn bằng nhau chằn chặn */
   gap: 30px;
   margin: 40px 0;
 }
@@ -964,6 +964,9 @@ body.gate-locked {
   text-align: center;
   position: relative;
   transition: var(--transition-smooth);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .family-box:hover {
@@ -991,6 +994,7 @@ body.gate-locked {
   background: var(--gold-gradient);
   box-shadow: var(--shadow-md);
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .couple-avatar {
@@ -1002,21 +1006,30 @@ body.gate-locked {
 }
 
 .couple-person-name {
-  font-size: 1.9rem;
+  font-size: clamp(1.5rem, 2.4vw, 1.9rem);
   color: var(--emerald-800);
   margin-bottom: 8px;
+  white-space: nowrap; /* Tuyệt đối không bị xuống dòng tên cô dâu và chú rể */
+  line-height: 1.25;
 }
 
 .couple-person-desc {
   font-size: 0.95rem;
   color: var(--text-muted);
   line-height: 1.6;
+  flex-grow: 1; /* Tự động co giãn để đường phân cách luôn ngang hàng */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 68px;
 }
 
 .parent-info {
   margin-top: 18px;
   padding-top: 16px;
   border-top: 1px dashed rgba(197, 160, 89, 0.4);
+  display: flex;
+  flex-direction: column;
 }
 
 .parent-title {
@@ -1025,14 +1038,24 @@ body.gate-locked {
   letter-spacing: 1px;
   color: var(--text-light);
   text-transform: uppercase;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
+}
+
+.parent-names-wrap {
+  min-height: 56px; /* Cố định khoảng cao tương đương 2 dòng tên phụ huynh */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
 }
 
 .parent-name {
   font-family: var(--font-serif);
-  font-size: 1.15rem;
+  font-size: clamp(0.95rem, 1.6vw, 1.15rem);
   color: var(--emerald-700);
   font-weight: 600;
+  line-height: 1.35;
+  white-space: nowrap;
 }
 
 .family-heart-center {
@@ -1041,6 +1064,7 @@ body.gate-locked {
   align-items: center;
   justify-content: center;
   gap: 12px;
+  align-self: center; /* Trái tim luôn căn giữa trục dọc */
 }
 
 .family-heart-icon {
@@ -1718,6 +1742,419 @@ textarea.form-control {
   font-size: 1.15rem;
 }
 
+/* === HỘP MỪNG CƯỚI (WEDDING GIFT / BANKING QR) === */
+#wedding-gift {
+  background: var(--bg-card-warm);
+  position: relative;
+}
+
+.gift-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+  max-width: 900px;
+  margin: 40px auto 30px;
+}
+
+.gift-card {
+  padding: 34px 26px;
+  background: var(--bg-card);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: var(--transition-smooth);
+}
+
+.gift-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--gold-primary);
+}
+
+.gift-card-header {
+  margin-bottom: 20px;
+}
+
+.gift-badge {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--emerald-800);
+  background: var(--gold-gradient-subtle);
+  border: 1px solid var(--gold-border);
+  padding: 4px 14px;
+  border-radius: var(--radius-full);
+  margin-bottom: 14px;
+  font-weight: 600;
+}
+
+.gift-avatar-wrap {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin: 0 auto 10px;
+  padding: 3px;
+  background: var(--gold-gradient);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.gift-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--emerald-900);
+}
+
+.gift-person-name {
+  font-size: 1.7rem;
+  color: var(--emerald-800);
+  margin-bottom: 2px;
+  white-space: nowrap;
+}
+
+.gift-sub-role {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--text-light);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* Khung Mã QR Hoàng Gia */
+.gift-qr-container {
+  cursor: pointer;
+  margin-bottom: 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+.gift-qr-frame {
+  width: 190px;
+  height: 190px;
+  padding: 8px;
+  background: #ffffff;
+  border: 2px solid var(--gold-primary);
+  border-radius: var(--radius-md);
+  box-shadow: 0 8px 24px rgba(16, 45, 30, 0.08), 0 0 15px rgba(197, 160, 89, 0.2);
+  position: relative;
+  overflow: hidden;
+  transition: var(--transition-smooth);
+}
+
+.gift-qr-container:hover .gift-qr-frame {
+  transform: scale(1.04);
+  box-shadow: 0 12px 30px rgba(197, 160, 89, 0.35);
+  border-color: var(--gold-light);
+}
+
+.gift-qr-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  display: block;
+}
+
+.gift-qr-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(14, 38, 26, 0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--gold-shimmer);
+  font-size: 0.85rem;
+  font-family: var(--font-sans);
+  font-weight: 500;
+  gap: 6px;
+  opacity: 0;
+  transition: var(--transition-smooth);
+  border-radius: var(--radius-md);
+}
+
+.gift-qr-container:hover .gift-qr-overlay {
+  opacity: 1;
+}
+
+.gift-qr-tip {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-top: 8px;
+  font-style: italic;
+}
+
+/* Thông tin tài khoản ngân hàng */
+.gift-bank-details {
+  width: 100%;
+  background: var(--bg-card-warm);
+  border: 1px solid rgba(197, 160, 89, 0.35);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  text-align: left;
+}
+
+.bank-detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  font-size: 0.95rem;
+  border-bottom: 1px dashed rgba(197, 160, 89, 0.25);
+}
+
+.bank-detail-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.detail-label {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.detail-value {
+  color: var(--emerald-800);
+}
+
+.detail-value.font-bold {
+  font-weight: 600;
+}
+
+.bank-detail-item.highlight-item {
+  padding-top: 10px;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.stk-num {
+  font-family: var(--font-sans);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--emerald-600);
+  letter-spacing: 1px;
+}
+
+/* Nút sao chép STK */
+.btn-copy-stk {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--gold-gradient);
+  color: var(--emerald-900);
+  border: none;
+  border-radius: var(--radius-full);
+  padding: 6px 14px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  box-shadow: 0 2px 8px rgba(197, 160, 89, 0.3);
+}
+
+.btn-copy-stk:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(197, 160, 89, 0.5);
+  filter: brightness(1.05);
+}
+
+.btn-copy-stk.copied {
+  background: #236544 !important;
+  color: #ffffff !important;
+}
+
+.gift-blessing-box {
+  max-width: 680px;
+  margin: 30px auto 0;
+  text-align: center;
+  padding: 20px;
+  border-left: 3px solid var(--gold-primary);
+  border-right: 3px solid var(--gold-primary);
+  background: rgba(197, 160, 89, 0.08);
+  border-radius: var(--radius-sm);
+}
+
+.gift-blessing-text {
+  font-family: var(--font-body);
+  font-size: 1.15rem;
+  font-style: italic;
+  color: var(--emerald-800);
+  line-height: 1.7;
+}
+
+/* Modal Phóng To Mã QR */
+.qr-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.35s ease, visibility 0.35s ease;
+}
+
+.qr-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.qr-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 26, 17, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.qr-modal-content {
+  position: relative;
+  max-width: 380px;
+  width: 100%;
+  background: #ffffff;
+  border-radius: var(--radius-lg);
+  padding: 36px 24px 28px;
+  text-align: center;
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.4);
+  transform: scale(0.92);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 2;
+}
+
+.qr-modal.active .qr-modal-content {
+  transform: scale(1);
+}
+
+.qr-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: rgba(16, 45, 30, 0.08);
+  border: none;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  font-size: 22px;
+  line-height: 1;
+  color: var(--emerald-800);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.qr-modal-close:hover {
+  background: var(--gold-primary);
+  color: #fff;
+}
+
+.qr-modal-badge {
+  display: inline-block;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.qr-modal-title {
+  font-size: 1.8rem;
+  color: var(--emerald-800);
+  margin-bottom: 18px;
+}
+
+.qr-modal-img-wrap {
+  width: 230px;
+  height: 230px;
+  margin: 0 auto 18px;
+  padding: 10px;
+  background: #ffffff;
+  border: 2px solid var(--gold-primary);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.qr-modal-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.qr-modal-info {
+  background: var(--bg-card-warm);
+  border-radius: var(--radius-sm);
+  padding: 14px;
+  border: 1px solid rgba(197, 160, 89, 0.3);
+}
+
+.qr-modal-bank {
+  font-weight: 600;
+  color: var(--emerald-800);
+  font-size: 1rem;
+}
+
+.qr-modal-account {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.qr-modal-stk-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.qr-modal-stk {
+  font-family: var(--font-sans);
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--emerald-600);
+  letter-spacing: 1px;
+}
+
+/* Toast Thông Báo Sao Chép STK */
+.toast-notification {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(14, 38, 26, 0.95);
+  color: #fae1a6;
+  border: 1px solid var(--gold-border);
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4), 0 0 15px rgba(197, 160, 89, 0.3);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 500;
+  z-index: 100001;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.toast-notification.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  visibility: visible;
+}
+
 /* === BẢN ĐỒ & ĐỊA ĐIỂM (LOCATION & MAP) === */
 #location {
   background: var(--bg-body);
@@ -1984,6 +2421,10 @@ textarea.form-control {
   .location-grid {
     grid-template-columns: 1fr;
   }
+  .gift-grid {
+    grid-template-columns: 1fr;
+    max-width: 460px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -2168,6 +2609,21 @@ textarea.form-control {
   }
   .location-map-wrap {
     height: 320px;
+  }
+  .gift-card {
+    padding: 26px 16px;
+  }
+  .gift-qr-frame {
+    width: 170px;
+    height: 170px;
+  }
+  .toast-notification {
+    bottom: 84px;
+    font-size: 0.82rem;
+    padding: 10px 18px;
+    white-space: normal;
+    text-align: center;
+    max-width: 90%;
   }
 }
 

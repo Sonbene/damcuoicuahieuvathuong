@@ -901,3 +901,102 @@ function createConfetti() {
     }, 4500);
   }
 }
+
+// ========================================================================
+// 9. HỘP MỪNG CƯỚI & SAO CHÉP STK & MODAL PHÓNG TO MÃ QR
+// ========================================================================
+let currentModalStk = '';
+
+function showToast(message) {
+  const toast = document.getElementById('toastNotification');
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(toast._timeout);
+  toast._timeout = setTimeout(() => {
+    toast.classList.remove('show');
+  }, 2800);
+}
+
+function copyStk(stk, name, btn) {
+  if (!stk) return;
+  
+  function onSuccess() {
+    showToast(name ? `✓ Đã sao chép STK ${name}: ${stk}` : `✓ Đã sao chép số tài khoản: ${stk}`);
+    if (btn) {
+      const originalText = btn.innerHTML;
+      btn.innerHTML = 'Đã Chép ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.innerHTML = originalText;
+        btn.classList.remove('copied');
+      }, 2000);
+    }
+  }
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(stk).then(onSuccess).catch(() => {
+      fallbackCopy(stk, onSuccess);
+    });
+  } else {
+    fallbackCopy(stk, onSuccess);
+  }
+}
+
+function fallbackCopy(text, cb) {
+  const tempInput = document.createElement('input');
+  tempInput.value = text;
+  tempInput.style.position = 'fixed';
+  tempInput.style.opacity = '0';
+  document.body.appendChild(tempInput);
+  tempInput.select();
+  try {
+    document.execCommand('copy');
+    if (cb) cb();
+  } catch (err) {
+    showToast(`STK: ${text}`);
+  }
+  document.body.removeChild(tempInput);
+}
+
+function openQrModal(imgSrc, personName, bankName, stk, accountName) {
+  const modal = document.getElementById('qrModal');
+  const modalImg = document.getElementById('qrModalImg');
+  const modalTitle = document.getElementById('qrModalTitle');
+  const modalBank = document.getElementById('qrModalBank');
+  const modalAccount = document.getElementById('qrModalAccount');
+  const modalStk = document.getElementById('qrModalStk');
+
+  if (!modal) return;
+
+  currentModalStk = stk;
+  if (modalImg) modalImg.src = imgSrc;
+  if (modalTitle) modalTitle.textContent = personName;
+  if (modalBank) modalBank.textContent = `Ngân hàng: ${bankName}`;
+  if (modalAccount) modalAccount.textContent = `Chủ tài khoản: ${accountName}`;
+  if (modalStk) modalStk.textContent = stk;
+
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeQrModal() {
+  const modal = document.getElementById('qrModal');
+  if (modal) {
+    modal.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+
+function copyModalStk() {
+  if (currentModalStk) {
+    const btn = document.getElementById('qrModalCopyBtn');
+    copyStk(currentModalStk, '', btn);
+  }
+}
+
+window.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    closeQrModal();
+  }
+});
